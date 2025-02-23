@@ -17,11 +17,41 @@ namespace University.BL.Data // Define el espacio de nombres donde se encuentra 
         public DbSet<Course> Courses { get; set; } // Tabla de cursos
         public DbSet<Student> Students { get; set; } // Tabla de estudiantes
         public DbSet<Enrollment> Enrollments { get; set; } // Tabla de inscripciones
+        public DbSet<Instructor> Instructors { get; set; } // Tabla de instructores
+        public DbSet<OfficeAssignment> OfficeAssignments { get; set; } // Tabla de asignaciones de oficina
+        public DbSet<Department> Departments { get; set; } // Tabla de departamentos
+        public DbSet<CourseInstructor> CourseInstructors { get; set; } // Tabla de instructores de cursos
 
         // Método estático para crear una nueva instancia del contexto
         public static UniversityContext Create()
         {
             return new UniversityContext(); // Devuelve una nueva instancia de UniversityContext
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // Configuración de las relaciones muchos a muchos entre Course e Instructor
+            modelBuilder.Entity<CourseInstructor>()
+                .HasKey(ci => new { ci.CourseID, ci.InstructorID });
+
+            modelBuilder.Entity<CourseInstructor>()
+                .HasRequired(ci => ci.Course)
+                .WithMany(c => c.CourseInstructors)
+                .HasForeignKey(ci => ci.CourseID);
+
+            modelBuilder.Entity<CourseInstructor>()
+                .HasRequired(ci => ci.Instructor)
+                .WithMany(i => i.CourseInstructors)
+                .HasForeignKey(ci => ci.InstructorID);
+
+
+            //Configuracion de la relacion entre Instructor y OfficeAssignment
+            modelBuilder.Entity<OfficeAssignment>()
+                .HasKey(oa => oa.InstructorID);
+
+            modelBuilder.Entity<OfficeAssignment>()
+                .HasRequired(oa => oa.Instructor)
+                .WithOptional(i => i.OfficeAssignment);
         }
     }
 }

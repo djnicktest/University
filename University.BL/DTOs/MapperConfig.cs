@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System.Data.Entity;
 using University.BL.Models;
 
 namespace University.BL.DTOs
@@ -16,25 +15,14 @@ namespace University.BL.DTOs
             // La configuración se define mediante expresiones lambda en cfg.
             return new MapperConfiguration(cfg =>
             {
-                // Define cómo mapear un objeto de tipo Course a CourseDTO.
-                // Esto se utiliza generalmente para operaciones de lectura (GET).
-                cfg.CreateMap<Course, CourseDTO>();
-
-                // Define cómo mapear un objeto de tipo CourseDTO a Course.
-                // Esto se utiliza para operaciones de escritura (PUT, POST).
-                cfg.CreateMap<CourseDTO, Course>();
-
-                // Define cómo mapear un objeto de tipo Student a StudentDTO.
-                cfg.CreateMap<Student, StudentDTO>();
-
-                // Define cómo mapear un objeto de tipo StudentDTO a Student.
-                cfg.CreateMap<StudentDTO, Student>();
-
-                // Define cómo mapear un objeto de tipo Enrollment a EnrollmentDTO.
-                cfg.CreateMap<Enrollment, EnrollmentDTO>();
-
-                // Define cómo mapear un objeto de tipo EnrollmentDTO a Enrollment.
-                cfg.CreateMap<EnrollmentDTO, Enrollment>();
+                // Mapeos bidireccionales usando ReverseMap()
+                cfg.CreateMap<Course, CourseDTO>().ReverseMap();
+                cfg.CreateMap<Student, StudentDTO>().ReverseMap();
+                cfg.CreateMap<Enrollment, EnrollmentDTO>().ReverseMap();
+                cfg.CreateMap<Instructor, InstructorDTO>().ReverseMap();
+                cfg.CreateMap<OfficeAssignment, OfficeAssignmentDTO>().ReverseMap();
+                cfg.CreateMap<Department, DepartmentDTO>().ReverseMap();
+                cfg.CreateMap<CourseInstructor, CourseInstructorDTO>().ReverseMap();
             });
         }
     }

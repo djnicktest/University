@@ -12,6 +12,6 @@ namespace University.BL.Models
      
         public string Location { get; set; }
 
-        public virtual Instructor Instructor { get; set; }
+        public Instructor Instructor { get; set; }
     }
 }

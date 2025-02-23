@@ -14,6 +14,9 @@ namespace University.BL.DTOs // Define el espacio de nombres para la clase. Los 
 
         [Required(ErrorMessage = "The field Credits is required")] // Indica que el campo Credits es obligatorio. Si falta, se muestra el mensaje de error.
         public int Credits { get; set; } // Propiedad pública para los créditos del curso. Se usa para definir la cantidad de créditos asignados al curso.
+
+        [Required(ErrorMessage = "The field DepartmentID is required")] // Indica que el campo DepartmentID es obligatorio. Si falta, se muestra el mensaje de error.
+        public int DepartmentID { get; set; } // Propiedad pública para el ID del departamento. Se usa para identificar de manera única cada departamento.
     }
 }
 

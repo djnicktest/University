@@ -14,7 +14,8 @@ namespace University.BL.Models
         public string FirstMidName { get; set; }
         public DateTime HireDate { get; set; }
 
+        public OfficeAssignment OfficeAssignment { get; set; }
         public virtual ICollection<CourseInstructor> CourseInstructors { get; set; }
-        public virtual OfficeAssignment OfficeAssignment { get; set; }
+        
     }
 }

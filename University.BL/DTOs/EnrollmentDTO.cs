@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace University.BL.DTOs
         A, B, C, D, F
     }
 
-    internal class EnrollmentDTO
+    public class EnrollmentDTO
     {
         // Define una clase interna llamada EnrollmentDTO.
         // Esta clase se usa para transferir datos relacionados con la inscripción (enrollment) de estudiantes en cursos.
@@ -26,14 +27,17 @@ namespace University.BL.DTOs
         // Propiedad pública que almacena el ID de la inscripción.
         // El método get obtiene el valor y el método set establece el valor.
 
+        [Required(ErrorMessage = "The field CourseID is required")]
         public int CourseID { get; set; }
         // Propiedad pública que almacena el ID del curso.
         // Relaciona la inscripción con un curso específico.
 
+        [Required(ErrorMessage = "The field StudentID is required")]
         public int StudentID { get; set; }
         // Propiedad pública que almacena el ID del estudiante.
         // Relaciona la inscripción con un estudiante específico.
 
+        [Required(ErrorMessage = "The field Grade is required")]
         public Grade Grade { get; set; }
         // Propiedad pública que almacena el grado (Grade) obtenido en el curso.
         // Usa la enumeración Grade definida anteriormente.
